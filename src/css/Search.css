@@ -1,0 +1,11 @@
+.form-control {
+    border-radius: 2.25rem !important;
+    padding-left: 35px;
+}
+
+i{
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 10px;
+    color: lightgray;
+}
