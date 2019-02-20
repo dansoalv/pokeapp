@@ -3,9 +3,16 @@
     padding-left: 35px;
 }
 
-i{
+i {
     position: absolute;
     margin-top: 10px;
     margin-left: 10px;
     color: lightgray;
+}
+
+.badge-pill {
+    padding: 5px;
+    width: 100px;
+    margin: 5px;
+    cursor: pointer;
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './../css/PokemonList.css'
+import PokemonCardComponent from './PokemonCardComponent';
 
 class PokemonListComponent extends Component {
 
@@ -32,10 +33,7 @@ class PokemonListComponent extends Component {
         return(
             <div className="row">
                 {this.state.pokemonItem.map(pokemon => 
-                    <div className="card-box">
-                        <div className="cardPokemon"><img src={pokemon.sprites.front_default}></img></div>
-                        <p>{pokemon.forms[0].name}</p>
-                    </div>
+                    <PokemonCardComponent pokemon={pokemon}></PokemonCardComponent>
                 )}
             </div>
         )
