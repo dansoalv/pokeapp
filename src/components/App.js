@@ -6,15 +6,31 @@ import PokemonListComponent from './PokemonListComponent';
 
 class App extends Component {
 
+  constructor(props){
+    super(props);
+    this.state = {
+      typeSelected: null,
+      searchText: null
+    };
+  }
+
   typeSelected = (t) => {
     console.log(t);
+    this.setState({typeSelected: t})
   }
+
+  searchT = (t) => {
+    console.log(t);
+    this.setState({searchText: t})
+  }
+
+
   render() {
     return (
       <div className="container">
         <HeaderComponent></HeaderComponent>
-        <SearchComponent typeSelected={this.typeSelected}></SearchComponent>
-        <PokemonListComponent></PokemonListComponent>
+        <SearchComponent typeSelected={this.typeSelected} searchT={this.searchT} ></SearchComponent>
+        <PokemonListComponent urlPokemon={this.state.typeSelected} searchText={this.state.searchText}></PokemonListComponent>
       </div>
     );
   }

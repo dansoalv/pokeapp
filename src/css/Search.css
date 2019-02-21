@@ -16,3 +16,11 @@ i {
     margin: 5px;
     cursor: pointer;
 }
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    border-radius: 20px;
+    width: 100px;
+}

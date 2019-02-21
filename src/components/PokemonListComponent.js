@@ -22,12 +22,45 @@ class PokemonListComponent extends Component {
                 this.state.pokemonData.forEach(element => {
                     fetch(element.url).then(response => response.json()).then(pokemon =>{
                         this.setState({
-                            pokemonItem: this.state.pokemonItem.concat([pokemon])
+                            pokemonItem: this.state.pokemonItem.concat([pokemon]) 
                         })
                     })
                 });
         })
     }
+
+   componentWillReceiveProps(nextProps) {
+    this.setState({
+        pokemonData: [],
+        pokemonItem: []
+    })
+
+    if(nextProps.urlPokemon !== null){
+        fetch(nextProps.urlPokemon).then(response => response.json()).then(pokemonList =>{
+            this.setState({
+                pokemonData: pokemonList.pokemon
+            })
+           
+            if(this.state.pokemonData !== undefined) {
+                this.state.pokemonData.forEach(element => {
+                    fetch(element.pokemon.url).then(response => response.json()).then(res =>{
+                        this.setState({
+                            pokemonItem: this.state.pokemonItem.concat([res])
+                        })
+                    })
+                });
+        
+                this.state.pokemonItem.sort((a, b) => a.id - b.id);
+            }
+    
+        });
+    }else {
+
+        // Se debe buscar por nombre el pokemon o ID 
+        console.log(nextProps.searchText)
+    }
+    
+   }
 
     render(){
         return(
