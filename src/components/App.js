@@ -15,12 +15,10 @@ class App extends Component {
   }
 
   typeSelected = (t) => {
-    console.log(t);
     this.setState({typeSelected: t})
   }
 
   searchT = (t) => {
-    console.log(t);
     this.setState({searchText: t})
   }
 

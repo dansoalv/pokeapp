@@ -32,6 +32,7 @@ class SearchComponent extends Component {
     handleSearch = (n) => {
       n.preventDefault()
       this.setState({searchT: this.searchText.current.value})
+      this.props.typeSelected(null)
       this.props.searchT(this.searchText.current.value)
     }
 
@@ -43,7 +44,7 @@ class SearchComponent extends Component {
           <div className="col-lg-4 col-md-6 col-sx-12 col-xs-12">
             <div className="form-group">
               <i className="fa fa-search"></i>
-              <input type="text" className="form-control" id="search" aria-describedby="search" placeholder="Búsqueda" ref={this.searchText}/>
+              <input type="text" className="form-control" id="search" aria-describedby="search" placeholder="Búsqueda por Nombre/ID" ref={this.searchText}/>
             </div>
             </div>
             <div className="col-lg-4 col-md-6 col-sx-12 col-xs-12">

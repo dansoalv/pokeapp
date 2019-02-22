@@ -16,10 +16,10 @@ class PokemonListComponent extends Component {
     componentWillMount() {
         fetch('https://pokeapi.co/api/v2/pokemon').then(response => response.json()).then(pokemonList =>{
                 this.setState({
-                    pokemonData: pokemonList.results
+                    pokemonData: pokemonList
                 })
 
-                this.state.pokemonData.forEach(element => {
+                this.state.pokemonData.results.forEach(element => {
                     fetch(element.url).then(response => response.json()).then(pokemon =>{
                         this.setState({
                             pokemonItem: this.state.pokemonItem.concat([pokemon]) 
@@ -27,6 +27,7 @@ class PokemonListComponent extends Component {
                     })
                 });
         })
+        this.state.pokemonItem.sort((a, b) => a.id - b.id);
     }
 
    componentWillReceiveProps(nextProps) {
@@ -54,21 +55,78 @@ class PokemonListComponent extends Component {
             }
     
         });
+        
     }else {
+        fetch('https://pokeapi.co/api/v2/pokemon/' + nextProps.searchText.toLowerCase()).then(response => response.json()).then(pokemonList =>{
+            this.setState({
+                pokemonItem: this.state.pokemonItem.concat([pokemonList]) 
+            })
+            this.state.pokemonItem.sort((a, b) => a.id - b.id);
+    })
 
-        // Se debe buscar por nombre el pokemon o ID 
-        console.log(nextProps.searchText)
     }
     
    }
 
+   handleNext = (n) => {
+    n.preventDefault()
+    fetch(this.state.pokemonData.next).then(response => response.json()).then(pokemonList =>{
+                this.setState({
+                    pokemonData: [],
+                    pokemonItem: []
+                })
+                this.setState({
+                    pokemonData: pokemonList
+                })
+
+                this.state.pokemonData.results.forEach(element => {
+                    fetch(element.url).then(response => response.json()).then(pokemon =>{
+                        this.setState({
+                            pokemonItem: this.state.pokemonItem.concat([pokemon]) 
+                        })
+                    })
+                });
+        })
+        this.state.pokemonItem.sort((a, b) => a.id - b.id);
+  }
+
+  handleBack = (n) => {
+    n.preventDefault()
+    fetch(this.state.pokemonData.previous).then(response => response.json()).then(pokemonList =>{
+        this.setState({
+            pokemonData: [],
+            pokemonItem: []
+        })
+        this.setState({
+            pokemonData: pokemonList
+        })
+
+        this.state.pokemonData.results.forEach(element => {
+            fetch(element.url).then(response => response.json()).then(pokemon =>{
+                this.setState({
+                    pokemonItem: this.state.pokemonItem.concat([pokemon]) 
+                })
+            })
+        });
+})
+this.state.pokemonItem.sort((a, b) => a.id - b.id);
+
+  }
+
     render(){
         return(
-            <div className="row">
-                {this.state.pokemonItem.map(pokemon => 
-                    <PokemonCardComponent pokemon={pokemon}></PokemonCardComponent>
-                )}
+            <div>
+                <div className="row">
+                    {this.state.pokemonItem.map(pokemon => 
+                        <PokemonCardComponent pokemon={pokemon}></PokemonCardComponent>
+                    )}
+                </div>
+                <div className="row paginador">
+                    <button type="submit" className="btn btn-primary btn-pag" onClick={this.handleBack.bind()} hidden={this.state.pokemonData.previous == null}>Anterior</button> 
+                    <button type="submit" className="btn btn-primary btn-pag" onClick={this.handleNext.bind()}>Siguiente</button>       
+                </div>
             </div>
+
         )
     }
 }

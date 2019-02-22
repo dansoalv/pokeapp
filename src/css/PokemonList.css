@@ -4,6 +4,7 @@
     text-align: center;
     margin: 15px;
     border-radius: 15px;
+    cursor: pointer;
 }
 
 .bug {
@@ -106,7 +107,7 @@
     background-color: #F5EFFB;
 }
 
-img {
+.imgCard {
     margin-top: 30px;
 }
 
@@ -124,4 +125,45 @@ p {
     font-size: 12px;
     color: #848484;
     font-weight: 500;
+}
+
+.imgCardDetail{
+    text-align: center;
+}
+
+.modal-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 0px solid #e9ecef;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+}
+
+label{
+    margin: 10px;
+}
+
+span {
+    text-transform: capitalize;
+}
+
+.mar{
+    margin: 20px
+}
+
+.paginador{
+    margin: 20px;
+    justify-content: center;
+}
+
+.btn-pag{
+    margin: 10px;
 }
