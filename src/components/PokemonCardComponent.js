@@ -83,9 +83,6 @@ export default class PokemonCardComponent extends Component {
                       <span><strong>Habitat: </strong>{this.state.habitat}</span>
                     </div>
                     <div className="row">
-                      <span><strong>Evolución: </strong>{this.state.pokemons[0] === this.props.pokemon.forms[0].name ? "Ultima evolución" : this.state.pokemons[0]}</span>
-                    </div>
-                    <div className="row">
                       <span><strong>Felicidad: </strong>{this.state.happiness}</span>
                     </div>
                     <div className="row">
