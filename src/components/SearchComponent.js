@@ -56,7 +56,7 @@ class SearchComponent extends Component {
           <br/>
           <div className="row">
             {this.state.types.map(pokemon => 
-              <span className={pokemon.name + ' badge badge-pill'} onClick={this.handleClick.bind(this)} data-id={pokemon.url}>{pokemon.name}</span>
+              <span className={pokemon.name + ' badge badge-pill'} onClick={this.handleClick.bind(this)} data-id={pokemon.url} key={pokemon.name}>{pokemon.name}</span>
             )}
           </div>
           <br/>

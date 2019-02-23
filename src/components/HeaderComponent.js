@@ -7,7 +7,7 @@ class HeaderComponent extends Component {
       return (
           <div className="row">
             <div className="divHeader">
-              <img className="logo" src={logo}></img>
+              <img className="logo" src={logo} alt="pokemon"></img>
               <h1>PokeDex</h1>
             </div>
           </div>
